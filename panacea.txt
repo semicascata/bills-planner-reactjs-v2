@@ -1,0 +1,18 @@
+"dependencies": {
+    "axios": "^0.20.0",
+    "lodash": "^4.17.20",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "bootstrap": "^4.5.2",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2"
+  }
+
+  --------------------------------------------------
+  npm i --save axios lodash react-redux react-router-dom redux redux-devtools-extension redux-thunk
+  npm i --save-dev bootstrap sass sass-loader

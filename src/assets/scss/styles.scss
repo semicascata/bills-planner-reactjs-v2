@@ -1,0 +1,64 @@
+// bootstrap
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+// google fonts
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
+
+// global styles
+$font-primary: "Bree Serif", serif;
+$font-secondary: "Merriweather", serif;
+$color-primary: #393b44;
+$color-secondary: #d6e0f0;
+$bg-primary: #f1f3f8;
+$bg-secondary: #1976d2;
+
+body {
+  background-color: $bg-primary;
+  font-family: $font-secondary;
+}
+
+h1, h2, h3, h4 {
+  font-family: $font-primary;
+  color: $color-primary;
+}
+
+// spinner
+.spinner-container {
+  text-align: center;
+  margin: 100px auto;
+  width: 500px;
+
+  .spinner-border {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+// navbar
+.navbar {
+  font-family: $font-primary;
+  margin-bottom: 15px;
+}
+
+// auth - login/register
+.card {
+    margin: 60px auto;
+    width: 350px;
+    box-shadow: 15px 15px 30px #363636;
+}
+
+form {
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+.auth-title {
+  text-align: center;
+  padding: 10px;
+}
+
+// account/wallet
+.jumbotron .btn {
+  margin: 0 10px;
+}
