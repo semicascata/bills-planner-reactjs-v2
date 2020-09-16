@@ -89,6 +89,7 @@ export const loginUser = (formData) => async dispatch => {
     // loadUser();
     return resStatus;
   } catch (err) {
+    console.log(err);
     const errStatus = await err.response.data.statusCode;
 
     dispatch({

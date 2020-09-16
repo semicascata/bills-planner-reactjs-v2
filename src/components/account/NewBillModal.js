@@ -18,6 +18,10 @@ const NewBillModal = ({ newBill }) => {
   const saveBill = (e) => {
     e.preventDefault();
     newBill(billToAccount);
+    setBill({
+      bill: 0,
+      description: '',
+    });
   };
 
   return (

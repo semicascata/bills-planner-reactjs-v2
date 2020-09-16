@@ -1,8 +1,8 @@
 import {
   BILLS_TO_PAY,
-  // PAYED_BILLS,
+  PAYED_BILLS,
   PAY_BILLS,
-  // ADD_CREDIT,
+  ADD_CREDIT,
   ACCOUNT_ERRORS,
   NEW_BILL,
 } from '../types';
@@ -14,9 +14,10 @@ export const newBill = formData => async dispatch => {
   const token = localStorage.token;
   setToken(token);
   try {
-    console.log(formData);
-
-    const res = await api.post('/account/userbill', formData);
+    const res = await api.post('/account/userbill', {
+      bill: +formData.bill,
+      description: formData.description,
+    });
 
     console.log(res.data);
 
@@ -46,7 +47,7 @@ export const loadBills = () => async dispatch => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data);
 
     dispatch({
       type: ACCOUNT_ERRORS,
@@ -57,7 +58,24 @@ export const loadBills = () => async dispatch => {
 
 // get payed bills
 export const payedBills = () => async dispatch => {
+  const token = localStorage.token;
+  setToken(token);
 
+  try {
+    const res = await api.get('/account/payed');
+
+    console.log(res.data);
+
+    dispatch({
+      type: PAYED_BILLS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: ACCOUNT_ERRORS,
+      payload: err.response.data,
+    });
+  };
 };
 
 // pay all bills
@@ -82,6 +100,28 @@ export const payBills = () => async dispatch => {
 };
 
 // add credit to wallet
-export const addCredit = () => async dispatch => {
+export const addCredit = (formData) => async dispatch => {
+  const token = localStorage.token;
+  const stateParsed = JSON.parse(localStorage.state);
+  const userId = stateParsed.auth.user._id;
 
+  console.log(userId);
+  setToken(token);
+
+  try {
+    const res = await api.put(`/users/wallet/${userId}`, ({
+      credit: formData,
+    }));
+    console.log(res.data);
+
+    dispatch({
+      type: ADD_CREDIT,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: ACCOUNT_ERRORS,
+      payload: err.response.data,
+    });
+  }
 };

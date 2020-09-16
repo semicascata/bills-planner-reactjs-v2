@@ -6,9 +6,9 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const LOGOUT = 'LOGOUT';
-export const SET_LOADING = 'SET_LOADING';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const TOKEN = 'TOKEN';
+export const SET_LOADING = 'SET_LOADING';
 
 // account
 export const BILLS_TO_PAY = 'BILLS_TO_PAY';

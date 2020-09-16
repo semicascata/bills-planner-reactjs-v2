@@ -30,10 +30,15 @@ export default (state = initialState, action) => {
         wallet: action.payload.userWallet,
         walletAfterPay: action.payload.afterPayBills,
         totalToPay: action.payload.total,
-        itemsToPay: [action.payload.items]
+        itemsToPay: [action.payload.items],
       };
     case PAYED_BILLS:
-      return {};
+      console.log('PAYED_BILLS');
+      return {
+        ...state,
+        totalPayed: action.payload.total,
+        itemsPayed: [action.payload.items],
+      };
     case PAY_BILLS:
       return {
         ...state,
