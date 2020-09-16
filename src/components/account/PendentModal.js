@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { payBills } from '../../redux/actions/account';
 import PendentItem from './PendentItem';
 
-const PendentModal = ({ pendentItems, payBills }) => {
+const PendentModal = ({ account: { wallet, totalToPay }, pendentItems, payBills }) => {
+  const pendentToPay = wallet - totalToPay;
+  console.log(pendentToPay);
+
   return (
     <div className="modal fade" id="pendentBills" aria-labelledby="pendentBills" aria-hidden="true">
       <div className="modal-dialog" role="document">
@@ -27,8 +30,9 @@ const PendentModal = ({ pendentItems, payBills }) => {
             </ul>
           </div>
           <div className="modal-footer">
-            {pendentItems !== 'All good' &&
-              <button onClick={payBills} type='submit' className="btn btn-danger">Pay everything</button>
+            {pendentItems !== 'All good' && pendentToPay >= 0 ?
+              <button onClick={payBills} type='submit' className="btn btn-danger">Pay everything</button> :
+              null
             }
             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
@@ -41,6 +45,11 @@ const PendentModal = ({ pendentItems, payBills }) => {
 PendentModal.propTypes = {
   payBills: PropTypes.func.isRequired,
   pendentItems: PropTypes.any.isRequired, // array(if has bills) & string(if has no bills)
+  account: PropTypes.object.isRequired,
 };
 
-export default connect(null, { payBills })(PendentModal);
+const mapStateToProps = state => ({
+  account: state.account,
+});
+
+export default connect(mapStateToProps, { payBills })(PendentModal);

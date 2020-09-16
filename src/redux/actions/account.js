@@ -5,9 +5,17 @@ import {
   ADD_CREDIT,
   ACCOUNT_ERRORS,
   NEW_BILL,
+  SET_AWAIT
 } from '../types';
 import api from '../../utils/api';
 import setToken from '../../utils/setToken';
+
+// set wait to true
+export const setAwait = () => {
+  return {
+    type: SET_AWAIT,
+  };
+};
 
 // new bill
 export const newBill = formData => async dispatch => {

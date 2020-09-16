@@ -5,7 +5,7 @@ import { newBill } from '../../redux/actions/account';
 
 const NewBillModal = ({ newBill }) => {
   const [billToAccount, setBill] = useState({
-    bill: 0,
+    bill: '',
     description: '',
   });
 

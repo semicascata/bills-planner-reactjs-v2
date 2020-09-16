@@ -12,7 +12,18 @@
     "sass": "^1.26.10",
     "sass-loader": "^10.0.2"
   }
-
-  --------------------------------------------------
-  npm i --save axios lodash react-redux react-router-dom redux redux-devtools-extension redux-thunk
-  npm i --save-dev bootstrap sass sass-loader
+--------------------------------------------------
+npm i --save axios lodash react-redux react-router-dom redux redux-devtools-extension redux-thunk
+npm i --save-dev bootstrap sass sass-loader
+--------------------------------------------------
+fix backend:
+- delete single bill and return money,
+- bill description dont need to be unique(mongodb),
+--------------------------------------------------
+fix frontend:
+- about page,
+- refresh token,
+- take off all the logs,
+- return bills by month,
+- dont allowed paying bill if user is out of money, // DONE!
+- limit add credit,

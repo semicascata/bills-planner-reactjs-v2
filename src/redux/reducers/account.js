@@ -5,6 +5,7 @@ import {
   ADD_CREDIT,
   ACCOUNT_ERRORS,
   NEW_BILL,
+  SET_AWAIT,
 } from '../types';
 
 const initialState = {
@@ -15,13 +16,20 @@ const initialState = {
   totalPayed: null,
   itemsPayed: null,
   accountError: null,
+  wait: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_AWAIT:
+      return {
+        ...state,
+        wait: true,
+      };
     case NEW_BILL:
       return {
         ...state,
+        wait: false,
       };
     case BILLS_TO_PAY:
       console.log('BILLS_TO_PAY');
@@ -31,6 +39,7 @@ export default (state = initialState, action) => {
         walletAfterPay: action.payload.afterPayBills,
         totalToPay: action.payload.total,
         itemsToPay: [action.payload.items],
+        wait: false,
       };
     case PAYED_BILLS:
       console.log('PAYED_BILLS');
@@ -38,17 +47,23 @@ export default (state = initialState, action) => {
         ...state,
         totalPayed: action.payload.total,
         itemsPayed: [action.payload.items],
+        wait: false,
       };
     case PAY_BILLS:
       return {
         ...state,
+        wait: false,
       };
     case ADD_CREDIT:
-      return {};
+      return {
+        ...state,
+        wait: false,
+      };
     case ACCOUNT_ERRORS:
       return {
         ...state,
         accountError: action.payload,
+        wait: false,
       };
     default:
       return state;

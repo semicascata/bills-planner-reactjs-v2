@@ -40,7 +40,7 @@ export const loadUser = () => async dispatch => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.response.data);
     dispatch({
       type: AUTH_ERRORS,
       payload: err.response.data.message,
@@ -53,7 +53,7 @@ export const registerUser = (formData) => async dispatch => {
   try {
     const res = await api.post('/auth', formData);
 
-    const resStatus = res.data;
+    const resStatus = res.status;
     console.log(resStatus);
 
     dispatch({

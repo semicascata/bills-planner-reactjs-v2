@@ -6,6 +6,7 @@ import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Wallet from './components/account/Wallet';
+import ControlPanel from './components/controlPanel/ControlPanel';
 
 // scss
 import './assets/scss/styles.scss';
@@ -35,7 +36,8 @@ const App = () => {
               <Route exact path='/' component={Home} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Register} />
-              <PrivateRoute exact patch='/account' component={Wallet} />
+              <PrivateRoute exact path='/account' component={Wallet} />
+              <PrivateRoute exact path='/account/control' component={ControlPanel} />
             </Switch>
           </div>
         </Fragment>

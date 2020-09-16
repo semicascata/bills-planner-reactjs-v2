@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addCredit } from '../../redux/actions/account';
 
 const AddCreditModal = ({ addCredit }) => {
-  const [credit, setCredit] = useState(0);
+  const [credit, setCredit] = useState('');
 
   const changeCredentials = e => {
     setCredit(e.target.value);

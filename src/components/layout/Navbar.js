@@ -19,16 +19,16 @@ export const Navbar = ({ auth: { isAuth, user }, loadUser, logoutUser }) => {
 
   const adminLinks = (
     <Fragment>
-      <Link to="/account" className="nav-link active">Account</Link>
-      <a onClick={logout} className="nav-link" href="#!">Logout</a>
-      <Link to="/" className="nav-link">Control Panel</Link>
+      <a onClick={logout} className="nav-link active" href="#!">Logout</a>
+      <Link to="/account" className="nav-link">Account</Link>
+      <Link to="/account/control" className="nav-link">Control Panel</Link>
       <div className="nav-link">Yo, {user ? user.username : null}!</div>
     </Fragment>
   );
 
   const authLinks = (
     <Fragment>
-      <Link to="/wallet" className="nav-link active">Account</Link>
+      <Link to="/account" className="nav-link active">Account</Link>
       <a onClick={logout} className="nav-link" href="#!">Logout</a>
       <div className="nav-link">Welcome, {user ? user.username : null}!</div>
     </Fragment>

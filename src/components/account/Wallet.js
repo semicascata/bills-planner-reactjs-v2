@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadBills, payedBills } from '../../redux/actions/account';
+import { loadBills, payedBills, setAwait } from '../../redux/actions/account';
 import Spinner from '../layout/Spinner';
 import PendentModal from './PendentModal';
 import NewBillModal from './NewBillModal';
@@ -9,18 +9,21 @@ import AddCreditModal from './AddCreditModal';
 import PayedBillsModal from './PayedBillsModal';
 
 const Wallet = ({
-  account: { wallet, walletAfterPay, totalToPay, itemsToPay, itemsPayed, totalPayed },
+  account: { wallet, walletAfterPay, totalToPay, itemsToPay, itemsPayed, totalPayed, wait },
   loadBills,
   payedBills,
+  setAwait,
 }) => {
   useEffect(() => {
+    setAwait();
+
     setTimeout(() => {
       loadBills();
       payedBills();
     }, 1000);
-  }, [loadBills, payedBills]);
+  }, [setAwait, loadBills, payedBills]);
 
-  if (!wallet && !totalPayed && !totalToPay && walletAfterPay === undefined) {
+  if (wait === true) {
     return <Spinner />
   };
 
@@ -45,9 +48,9 @@ const Wallet = ({
       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#newBill">
         New bill
       </button>
-      <button type="button" className="btn btn-info" data-toggle="modal" data-target="#payedBills">
+      {itemsPayed[0].length > 0 && <button type="button" className="btn btn-info" data-toggle="modal" data-target="#payedBills">
         Payed Bills
-      </button>
+      </button>}
       <button type="button" className="btn btn-success" data-toggle="modal" data-target="#addCredit">
         Add Credit
       </button>
@@ -72,9 +75,9 @@ const Wallet = ({
       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#newBill">
         New bill
       </button>
-      <button type="button" className="btn btn-info" data-toggle="modal" data-target="#payedBills">
+      {itemsPayed[0].length > 0 && <button type="button" className="btn btn-info" data-toggle="modal" data-target="#payedBills">
         Payed Bills
-      </button>
+      </button>}
       <button type="button" className="btn btn-success" data-toggle="modal" data-target="#addCredit">
         Add Credit
       </button>
@@ -100,10 +103,11 @@ Wallet.propTypes = {
   account: PropTypes.object.isRequired,
   loadBills: PropTypes.func.isRequired,
   payedBills: PropTypes.func.isRequired,
+  setAwait: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   account: state.account,
 });
 
-export default connect(mapStateToProps, { loadBills, payedBills })(Wallet);
+export default connect(mapStateToProps, { loadBills, payedBills, setAwait })(Wallet);

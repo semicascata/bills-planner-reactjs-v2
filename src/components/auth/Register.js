@@ -35,9 +35,12 @@ const Register = ({ auth: { error, isAuth, loading }, registerUser, setLoading, 
     setLoading();
     registerUser(user)
       .then(res => {
+        console.log(res);
         if (res === 400) {
           setValidation('Please, fill in all fields');
-        } else if (!res) {
+        } else if (res === 409) {
+          setValidation('User or email already registered');
+        } else if (res === 201) {
           history.push('/login');
         }
       });
