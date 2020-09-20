@@ -9,14 +9,20 @@ export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const TOKEN = 'TOKEN';
 export const SET_LOADING = 'SET_LOADING';
+
 // account
+export const LOAD_ACCOUNT = 'LOAD_ACCOUNT';
 export const BILLS_TO_PAY = 'BILLS_TO_PAY';
 export const PAYED_BILLS = 'PAYED_BILLS';
 export const PAY_BILLS = 'PAY_BILLS';
 export const ADD_CREDIT = 'ADD_CREDIT';
 export const ACCOUNT_ERRORS = 'ACCOUNT_ERRORS';
 export const NEW_BILL = 'NEW_BILL';
+export const CHANGE_CREDITED = 'CHANGE_CREDITED';
+export const DELETE_BILL = 'DELETE_BILL';
 export const SET_AWAIT = 'SET_AWAIT';
+export const CLEAR_ITEMS = 'CLEAR_ITEMS';
+
 // control panel
 export const GET_USERS = 'GET_USERS';
 export const DELETE_USER = 'DELETE_USER';

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../redux/actions/control';
 import UsersModal from './UsersModal';
+import Spinner from '../layout/Spinner';
 
 const ControlPanel = ({ control: { users, errors }, fetchUsers }) => {
   useEffect(() => {
@@ -10,6 +11,10 @@ const ControlPanel = ({ control: { users, errors }, fetchUsers }) => {
       fetchUsers();
     }, 500);
   });
+
+  if (!users) {
+    return <Spinner />
+  }
 
   const sumWallets = users[0].reduce((a, b) => {
     return a + b.wallet;

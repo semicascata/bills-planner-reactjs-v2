@@ -27,3 +27,4 @@ fix frontend:
 - return bills by month,
 - dont allowed paying bill if user is out of money, // DONE!
 - limit add credit,
+- reload page after transations,

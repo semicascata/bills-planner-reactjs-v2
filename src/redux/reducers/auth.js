@@ -28,7 +28,6 @@ export default (state = initialState, action) => {
         loading: false,
       }
     case LOAD_USER:
-      console.log('LOAD_USER');
       return {
         ...state,
         isAuth: true,
@@ -46,7 +45,6 @@ export default (state = initialState, action) => {
         error: null,
       };
     case LOGIN_SUCCESS:
-      console.log('LOGIN_SUCCESS');
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('refreshToken', action.payload.refreshToken);
 
@@ -57,7 +55,6 @@ export default (state = initialState, action) => {
         loading: false,
       };
     case REGISTER_SUCCESS:
-      console.log('REGISTER_SUCCESS');
       return {
         ...state,
         loading: false,
@@ -67,7 +64,6 @@ export default (state = initialState, action) => {
     case LOGIN_FAIL:
     case REGISTER_FAIL:
     case LOGOUT:
-      console.log('AUTH_ERRORS, LOGIN_FAIL, REGISTER_FAIL, LOGOUT');
       localStorage.removeItem('state');
       localStorage.removeItem('token');
       localStorage.removeItem('refreshToken');

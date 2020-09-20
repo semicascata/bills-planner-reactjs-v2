@@ -63,6 +63,14 @@ form {
   margin: 10px;
 }
 
-.panel-li {
+li,
+.panel-li,
+.payed-item-li,
+.pendent-item-li {
   list-style-type: none;
 }
+
+.date-form {
+  padding: 15px 15px 0;
+}
+

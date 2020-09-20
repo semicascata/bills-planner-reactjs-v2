@@ -1,11 +1,15 @@
 import {
+  LOAD_ACCOUNT,
   BILLS_TO_PAY,
   PAYED_BILLS,
   PAY_BILLS,
   ADD_CREDIT,
   ACCOUNT_ERRORS,
   NEW_BILL,
-  SET_AWAIT
+  SET_AWAIT,
+  DELETE_BILL,
+  CHANGE_CREDITED,
+  CLEAR_ITEMS,
 } from '../types';
 import api from '../../utils/api';
 import setToken from '../../utils/setToken';
@@ -17,17 +21,36 @@ export const setAwait = () => {
   };
 };
 
+// account info
+export const accountInfo = () => async dispatch => {
+  const token = localStorage.token;
+  setToken(token);
+
+  try {
+    const res = await api.get('/account/userinfo');
+
+    dispatch({
+      type: LOAD_ACCOUNT,
+      payload: res.data,
+    })
+
+  } catch (err) {
+    dispatch({
+      type: ACCOUNT_ERRORS,
+      payload: err.response.data.message,
+    });
+  }
+};
+
 // new bill
 export const newBill = formData => async dispatch => {
   const token = localStorage.token;
   setToken(token);
   try {
-    const res = await api.post('/account/userbill', {
+    await api.post('/account/userbill', {
       bill: +formData.bill,
       description: formData.description,
     });
-
-    console.log(res.data);
 
     dispatch({
       type: NEW_BILL,
@@ -41,22 +64,18 @@ export const newBill = formData => async dispatch => {
 };
 
 // get bills to pay
-export const loadBills = () => async dispatch => {
+export const loadBills = (date) => async dispatch => {
   const token = localStorage.token;
   setToken(token);
 
   try {
-    const res = await api.get('/account/needtopay');
-
-    console.log(res.data);
+    const res = await api.get(`/account/needtopay/${date}`);
 
     dispatch({
       type: BILLS_TO_PAY,
       payload: res.data,
     });
   } catch (err) {
-    console.log(err.response.data);
-
     dispatch({
       type: ACCOUNT_ERRORS,
       payload: err.response.data,
@@ -65,14 +84,12 @@ export const loadBills = () => async dispatch => {
 };
 
 // get payed bills
-export const payedBills = () => async dispatch => {
+export const payedBills = (date) => async dispatch => {
   const token = localStorage.token;
   setToken(token);
 
   try {
-    const res = await api.get('/account/payed');
-
-    console.log(res.data);
+    const res = await api.get(`/account/payed/${date}`);
 
     dispatch({
       type: PAYED_BILLS,
@@ -92,9 +109,7 @@ export const payBills = () => async dispatch => {
   setToken(token);
 
   try {
-    const res = await api.put('/account/userbill/commit');
-
-    console.log(res.data);
+    await api.put('/account/userbill/commit');
 
     dispatch({
       type: PAY_BILLS,
@@ -113,23 +128,62 @@ export const addCredit = (formData) => async dispatch => {
   const stateParsed = JSON.parse(localStorage.state);
   const userId = stateParsed.auth.user._id;
 
-  console.log(userId);
   setToken(token);
 
   try {
-    const res = await api.put(`/users/wallet/${userId}`, ({
+    await api.put(`/users/wallet/${userId}`, ({
       credit: formData,
     }));
-    console.log(res.data);
 
     dispatch({
       type: ADD_CREDIT,
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: ACCOUNT_ERRORS,
       payload: err.response.data,
     });
+  }
+};
+
+export const changeCredited = (id) => async dispatch => {
+  const token = localStorage.token;
+  setToken(token);
+
+  try {
+    await api.put(`account/credited/${id}`);
+
+    dispatch({
+      type: CHANGE_CREDITED,
+    });
+  } catch (err) {
+    dispatch({
+      type: ACCOUNT_ERRORS,
+      payload: err.response.data,
+    });
+  }
+};
+
+export const deleteBill = (id) => async dispatch => {
+  const token = localStorage.token;
+  setToken(token);
+
+  try {
+    await api.delete(`account/${id}`);
+
+    dispatch({
+      type: DELETE_BILL,
+    });
+  } catch (err) {
+    dispatch({
+      type: ACCOUNT_ERRORS,
+      payload: err.response.data,
+    });
+  }
+};
+
+export const clearItems = () => {
+  return {
+    type: CLEAR_ITEMS,
   }
 };

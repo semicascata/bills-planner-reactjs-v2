@@ -34,13 +34,11 @@ export const loadUser = () => async dispatch => {
   try {
     const res = await api.get('/auth/profile');
 
-    console.log(res);
     dispatch({
       type: LOAD_USER,
       payload: res.data,
     });
   } catch (err) {
-    console.log(err.response.data);
     dispatch({
       type: AUTH_ERRORS,
       payload: err.response.data.message,
@@ -54,8 +52,6 @@ export const registerUser = (formData) => async dispatch => {
     const res = await api.post('/auth', formData);
 
     const resStatus = res.status;
-    console.log(resStatus);
-
     dispatch({
       type: REGISTER_SUCCESS,
     });
@@ -63,8 +59,6 @@ export const registerUser = (formData) => async dispatch => {
     return resStatus;
   } catch (err) {
     const errStatus = err.response.data.statusCode;
-    // console.log(errStatus);
-
     dispatch({
       type: REGISTER_FAIL,
       payload: err.response.data.message,
@@ -86,12 +80,10 @@ export const loginUser = (formData) => async dispatch => {
       payload: res.data,
     });
 
-    // loadUser();
     return resStatus;
   } catch (err) {
     console.log(err);
     const errStatus = await err.response.data.statusCode;
-
     dispatch({
       type: LOGIN_FAIL,
       payload: err.response.data.message,
