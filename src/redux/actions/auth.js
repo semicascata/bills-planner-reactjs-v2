@@ -1,5 +1,4 @@
 import api from '../../utils/api';
-import setToken from '../../utils/setToken';
 import {
   LOAD_USER,
   AUTH_ERRORS,
@@ -9,8 +8,10 @@ import {
   REGISTER_FAIL,
   LOGOUT,
   SET_LOADING,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  CHANGE_PASSWORD,
 } from '../types';
+import setToken from '../../utils/setToken';
 
 // set loading
 export const setLoading = () => {
@@ -52,19 +53,23 @@ export const registerUser = (formData) => async dispatch => {
     const res = await api.post('/auth', formData);
 
     const resStatus = res.status;
+    console.log(resStatus);
+
     dispatch({
       type: REGISTER_SUCCESS,
     });
 
     return resStatus;
   } catch (err) {
-    const errStatus = err.response.data.statusCode;
+    const errData = err.response.data;
+    console.log(errData);
+    console.log(err);
     dispatch({
       type: REGISTER_FAIL,
       payload: err.response.data.message,
     });
 
-    return errStatus;
+    return errData;
   }
 };
 
@@ -73,7 +78,7 @@ export const loginUser = (formData) => async dispatch => {
   try {
     const res = await api.post('/auth/login', formData);
 
-    const resStatus = await res.data.status;
+    const resStatus = res.data.status;
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -83,7 +88,7 @@ export const loginUser = (formData) => async dispatch => {
     return resStatus;
   } catch (err) {
     console.log(err);
-    const errStatus = await err.response.data.statusCode;
+    const errStatus = err.response.data.statusCode;
     dispatch({
       type: LOGIN_FAIL,
       payload: err.response.data.message,
@@ -98,4 +103,20 @@ export const logoutUser = () => dispatch => {
   dispatch({
     type: LOGOUT,
   });
+};
+
+// change password
+export const changePassword = (credentials) => async dispatch => {
+  try {
+    await api.post('/auth/change-password', credentials);
+
+    dispatch({
+      type: CHANGE_PASSWORD,
+    });
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERRORS,
+      payload: err.response.data.message,
+    });
+  }
 };

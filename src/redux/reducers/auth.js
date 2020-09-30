@@ -9,6 +9,7 @@ import {
   SET_LOADING,
   CLEAR_ERRORS,
   TOKEN,
+  CHANGE_PASSWORD,
 } from '../types';
 
 const initialState = {
@@ -38,6 +39,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case CHANGE_PASSWORD:
+      return {
+        ...state,
+        loading: false,
       };
     case CLEAR_ERRORS:
       return {

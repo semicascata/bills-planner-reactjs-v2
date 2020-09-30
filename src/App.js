@@ -7,6 +7,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Wallet from './components/account/Wallet';
 import ControlPanel from './components/controlPanel/ControlPanel';
+import Settings from './components/auth/Settings';
 
 // scss
 import './assets/scss/styles.scss';
@@ -15,16 +16,13 @@ import './assets/scss/styles.scss';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-const App = () => {
+// interceptors
+import interceptor from './utils/interceptor';
 
+const App = () => {
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      console.log('[App] There is a token!');
-    } else {
-      console.log('[App] No token founded...');
-    }
-  });
+    interceptor();
+  }, []);
 
   return (
     <Provider store={store}>
@@ -38,6 +36,7 @@ const App = () => {
               <Route exact path='/signup' component={Register} />
               <PrivateRoute exact path='/account' component={Wallet} />
               <PrivateRoute exact path='/account/control' component={ControlPanel} />
+              <PrivateRoute exact path='/settings' component={Settings} />
             </Switch>
           </div>
         </Fragment>

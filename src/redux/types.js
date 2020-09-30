@@ -9,6 +9,7 @@ export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const TOKEN = 'TOKEN';
 export const SET_LOADING = 'SET_LOADING';
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 
 // account
 export const LOAD_ACCOUNT = 'LOAD_ACCOUNT';

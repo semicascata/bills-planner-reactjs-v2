@@ -31,6 +31,12 @@ const Wallet = ({
   // wallet after pay bills
   const walletAfterPay = wallet - pendent;
 
+  // refresh
+  const refresh = () => {
+    setAwait();
+    accountInfo();
+  };
+
   const hasBills = (
     <Fragment>
       <p className="lead"><i className="fas fa-wallet"></i> Wallet: {
@@ -49,16 +55,19 @@ const Wallet = ({
       <p><i>*Wallet after paying pendent bills.</i></p>
 
       {/* trigger modal */}
-      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#newBill">
+      <button onClick={refresh} className="btn btn-account" style={{ fontSize: "30px" }} href="#!">
+        <i className="fas fa-sync-alt"></i>
+      </button>
+      <button type="button" className="btn btn-primary btn-account" data-toggle="modal" data-target="#newBill">
         New bill
       </button>
-      <button type="button" className="btn btn-success" data-toggle="modal" data-target="#addCredit">
+      <button type="button" className="btn btn-success btn-account" data-toggle="modal" data-target="#addCredit">
         Add Credit
       </button>
-      { payed ? <button type="button" className="btn btn-info" data-toggle="modal" data-target="#payedBills">
+      { payed ? <button type="button" className="btn btn-info btn-account" data-toggle="modal" data-target="#payedBills">
         Payed Bills
         </button> : null}
-      <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#pendentBills">
+      <button type="button" className="btn btn-danger btn-account" data-toggle="modal" data-target="#pendentBills">
         Pendent Bills
       </button>
     </Fragment>
@@ -76,13 +85,16 @@ const Wallet = ({
       <hr className="my-4" />
 
       {/* trigger modal */}
-      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#newBill">
+      <button onClick={refresh} className="btn btn-account" style={{ fontSize: "30px" }} href="#!">
+        <i className="fas fa-sync-alt"></i>
+      </button>
+      <button type="button" className="btn btn-primary btn-account" data-toggle="modal" data-target="#newBill">
         New bill
       </button>
-      <button type="button" className="btn btn-success" data-toggle="modal" data-target="#addCredit">
+      <button type="button" className="btn btn-success btn-account" data-toggle="modal" data-target="#addCredit">
         Add Credit
       </button>
-      { payed ? <button type="button" className="btn btn-info" data-toggle="modal" data-target="#payedBills">
+      { payed ? <button type="button" className="btn btn-info btn-account" data-toggle="modal" data-target="#payedBills">
         Payed Bills
         </button> : null}
     </Fragment>

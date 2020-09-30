@@ -7,12 +7,10 @@ import Spinner from '../layout/Spinner';
 
 const ControlPanel = ({ control: { users, errors }, fetchUsers }) => {
   useEffect(() => {
-    setTimeout(() => {
-      fetchUsers();
-    }, 500);
+    fetchUsers();
   });
 
-  if (!users) {
+  if (!users || users[0] === null) {
     return <Spinner />
   }
 

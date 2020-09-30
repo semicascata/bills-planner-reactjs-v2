@@ -59,7 +59,7 @@ form {
 }
 
 // account/wallet
-.jumbotron .btn {
+.jumbotron .btn-account {
   margin: 10px;
 }
 
@@ -74,3 +74,11 @@ li,
   padding: 15px 15px 0;
 }
 
+// settings
+.change-credentials-form {
+  width: 400px;
+
+  .form-btn {
+    margin: 0;
+  }
+}

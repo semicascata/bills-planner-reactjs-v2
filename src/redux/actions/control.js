@@ -19,7 +19,6 @@ export const fetchUsers = () => async dispatch => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: CONTROL_ERRORS,
       payload: err.response.data.message,
@@ -33,8 +32,7 @@ export const deleteUser = (id) => async dispatch => {
   setToken(token);
 
   try {
-    const res = await api.delete(`/users/${id}`);
-    console.log(res.data);
+    await api.delete(`/users/${id}`);
 
     dispatch({
       type: DELETE_USER,

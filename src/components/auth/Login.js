@@ -27,19 +27,19 @@ const Login = ({ auth: { error, isAuth, loading }, loginUser, setLoading, clearE
 
   const submitLogin = async (e) => {
     e.preventDefault();
-    setValidation('');
+    setValidation("");
 
     if (username === "" || password === "") {
       setValidation('Please, fill in all fields!');
+    } else {
+      setLoading();
+      loginUser(user);
+
+      setUser({
+        username: '',
+        password: '',
+      });
     }
-
-    setLoading();
-    loginUser(user);
-
-    setUser({
-      username: '',
-      password: '',
-    });
   };
 
   if (isAuth) {
@@ -82,9 +82,6 @@ const Login = ({ auth: { error, isAuth, loading }, loginUser, setLoading, clearE
             value={username}
             required
           />
-          <div className="invalid-feedback">
-            Please, fill in all fields!
-          </div>
         </div>
 
         <div className="form-group">
@@ -97,9 +94,6 @@ const Login = ({ auth: { error, isAuth, loading }, loginUser, setLoading, clearE
             value={password}
             required
           />
-          <div className="invalid-feedback">
-            Please, fill in all fields!
-          </div>
         </div>
 
         <div className="text-center">
