@@ -23,7 +23,9 @@ const Settings = ({ auth: { user, loading }, loadUser, changePassword }) => {
   const changeCredentials = (e) => setPass({ ...change, [e.target.name]: e.target.value });
 
   const submitChanges = () => {
-    changePassword(change);
+    changePassword(change).then(res => {
+      console.log(res);
+    });
   };
 
   return (

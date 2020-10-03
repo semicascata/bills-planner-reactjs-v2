@@ -17,13 +17,8 @@ export const Navbar = ({ auth: { isAuth, user }, loadUser, logoutUser }) => {
     return <Redirect to='/login' />
   };
 
-  const refresh = () => {
-    window.location.reload(false);
-  };
-
   const adminLinks = (
     <Fragment>
-      <a onClick={refresh} className="nav-link active" style={{ float: "right" }} href="#!"><i className="fas fa-sync-alt"></i></a>
       <a onClick={logout} className="nav-link" href="#!">Logout</a>
       <Link to="/account" className="nav-link">Account</Link>
       <Link to="/account/control" className="nav-link">Control Panel</Link>
@@ -33,7 +28,6 @@ export const Navbar = ({ auth: { isAuth, user }, loadUser, logoutUser }) => {
 
   const authLinks = (
     <Fragment>
-      <a onClick={refresh} className="nav-link active" href="#!"><i className="fas fa-sync-alt"></i></a>
       <Link to="/account" className="nav-link active">Account</Link>
       <a onClick={logout} className="nav-link" href="#!">Logout</a>
       <Link to="/settings" className="nav-link">Settings</Link>

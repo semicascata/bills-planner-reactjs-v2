@@ -35,11 +35,10 @@ const Register = ({ auth: { error, isAuth, loading }, registerUser, setLoading, 
     setLoading();
     registerUser(user)
       .then(res => {
-        console.log(res);
         if (res === 400) {
           setValidation('Please, fill in all fields');
         } else if (res === 409) {
-          setValidation('User or email already registered');
+          setValidation('User/email already registered or passwords dont match');
         } else if (res === 201) {
           history.push('/login');
         }
@@ -69,12 +68,12 @@ const Register = ({ auth: { error, isAuth, loading }, registerUser, setLoading, 
           <h2><i className="fas fa-user-plus"></i> Register</h2>
         </div>
 
-        {error && <div className="alert alert-danger alert-dismissible fade show" role="alert">
+        {/* {error && <div className="alert alert-danger alert-dismissible fade show" role="alert">
           <strong>Error:</strong> {error}
           <button type="button" className="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>}
+        </div>} */}
 
         {validation && <div className="alert alert-warning alert-dismissible fade show" role="alert">
           <strong>Validation:</strong> {validation}
@@ -130,7 +129,8 @@ const Register = ({ auth: { error, isAuth, loading }, registerUser, setLoading, 
             required
           />
         </div>
-
+        <hr />
+        <p style={{ fontSize: "12px" }}><i>*Password must be longer than or equal to 6 characters</i></p>
         <div className="text-center">
           <button onClick={submitRegister} type="submit" className="btn btn-danger btn-block">
             Sign Up

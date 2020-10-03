@@ -52,18 +52,17 @@ export const registerUser = (formData) => async dispatch => {
   try {
     const res = await api.post('/auth', formData);
 
-    const resStatus = res.status;
-    console.log(resStatus);
+    console.log(res.data.message);
 
     dispatch({
       type: REGISTER_SUCCESS,
     });
 
-    return resStatus;
+    return 201;
   } catch (err) {
-    const errData = err.response.data;
+    const errData = err.response.status;
     console.log(errData);
-    console.log(err);
+
     dispatch({
       type: REGISTER_FAIL,
       payload: err.response.data.message,
@@ -87,7 +86,6 @@ export const loginUser = (formData) => async dispatch => {
 
     return resStatus;
   } catch (err) {
-    console.log(err);
     const errStatus = err.response.data.statusCode;
     dispatch({
       type: LOGIN_FAIL,
@@ -107,6 +105,9 @@ export const logoutUser = () => dispatch => {
 
 // change password
 export const changePassword = (credentials) => async dispatch => {
+  const token = localStorage.token;
+  setToken(token);
+
   try {
     await api.post('/auth/change-password', credentials);
 
@@ -114,9 +115,10 @@ export const changePassword = (credentials) => async dispatch => {
       type: CHANGE_PASSWORD,
     });
   } catch (err) {
+    console.log(err);
     dispatch({
       type: AUTH_ERRORS,
-      payload: err.response.data.message,
+      // payload: err.response.data.message,
     });
   }
 };

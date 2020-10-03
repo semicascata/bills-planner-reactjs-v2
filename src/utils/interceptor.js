@@ -19,9 +19,8 @@ const interceptor = () => {
   api.interceptors.response.use(res => {
     return res;
   }, err => {
-    const errStatus = err.response.status;
-
-    if (errStatus === 401) {
+    console.log(err);
+    if (err.response.status === 401) {
       console.log(err.response);
       // try {
       //   console.log(errStatus);
@@ -40,7 +39,7 @@ const interceptor = () => {
       // }
     }
 
-    return err;
+    return Promise.reject(err);
   });
 };
 
