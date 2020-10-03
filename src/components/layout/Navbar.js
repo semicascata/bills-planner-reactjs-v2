@@ -28,6 +28,7 @@ export const Navbar = ({ auth: { isAuth, user }, loadUser, logoutUser }) => {
 
   const authLinks = (
     <Fragment>
+      <Link to="/about" className="nav-link active">About</Link>
       <Link to="/account" className="nav-link active">Account</Link>
       <a onClick={logout} className="nav-link" href="#!">Logout</a>
       <Link to="/settings" className="nav-link">Settings</Link>
@@ -37,6 +38,7 @@ export const Navbar = ({ auth: { isAuth, user }, loadUser, logoutUser }) => {
   const guestLinks = (
     <Fragment>
       <Link to="/" className="nav-link active">Home</Link>
+      <Link to="/about" className="nav-link active">About</Link>
       <Link to="/login" className="nav-link">Login</Link>
     </Fragment>
   );

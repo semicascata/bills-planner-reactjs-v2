@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Home from './components/Home';
+import About from './components/About';
 import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -32,6 +33,7 @@ const App = () => {
           <div className='container'>
             <Switch>
               <Route exact path='/' component={Home} />
+              <Route exact path='/about' component={About} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Register} />
               <PrivateRoute exact path='/account' component={Wallet} />
