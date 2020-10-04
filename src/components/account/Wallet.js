@@ -64,7 +64,7 @@ const Wallet = ({
       <button type="button" className="btn btn-success btn-account" data-toggle="modal" data-target="#addCredit">
         Add Credit
       </button>
-      { payed ? <button type="button" className="btn btn-info btn-account" data-toggle="modal" data-target="#payedBills">
+      { payed > 0 ? <button type="button" className="btn btn-info btn-account" data-toggle="modal" data-target="#payedBills">
         Payed Bills
         </button> : null}
       <button type="button" className="btn btn-danger btn-account" data-toggle="modal" data-target="#pendentBills">
@@ -78,9 +78,9 @@ const Wallet = ({
       <p className="lead"><i className="fas fa-wallet"></i> Wallet: {
         wallet && wallet > 0 ? '$ ' + wallet.toFixed(2) : 'Add some credit!'
       }</p>
-      <p className="lead"><i className="fas fa-money-bill"></i> Total Payed: {
+      {/* <p className="lead"><i className="fas fa-money-bill"></i> Total Payed: {
         !payed || payed <= 0 ? 'Nothing payed yet...' : '$ ' + payed.toFixed(2)
-      }</p>
+      }</p> */}
       <p className="lead"><i className="fas fa-hand-holding-usd"></i> No pendent bills, all good!</p>
       <hr className="my-4" />
 

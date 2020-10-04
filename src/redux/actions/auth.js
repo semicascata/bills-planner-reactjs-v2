@@ -105,20 +105,22 @@ export const logoutUser = () => dispatch => {
 
 // change password
 export const changePassword = (credentials) => async dispatch => {
-  const token = localStorage.token;
-  setToken(token);
-
   try {
-    await api.post('/auth/change-password', credentials);
+    const res = await api.put('/auth/change-password', ({
+      current: credentials.current,
+      newPass: credentials.newPass,
+    }));
 
     dispatch({
       type: CHANGE_PASSWORD,
     });
+
+    return res.data.message;
   } catch (err) {
     console.log(err);
     dispatch({
       type: AUTH_ERRORS,
-      // payload: err.response.data.message,
+      payload: err.response.data.message,
     });
   }
 };

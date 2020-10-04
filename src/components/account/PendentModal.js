@@ -86,7 +86,7 @@ const PendentModal = ({ account: { itemsToPay }, loadBills, payBills }) => {
             </ul>
           </div>
           <div className="modal-footer">
-            <button onClick={payBills} type='submit' className="btn btn-danger">Pay everything</button>
+            <button onClick={payBills} type="button" className="btn btn-danger">Pay everything</button>
             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>

@@ -17,10 +17,11 @@ const interceptor = () => {
 
   // res
   api.interceptors.response.use(res => {
+    // console.log(res.data);
     return res;
   }, err => {
-    console.log(err);
-    if (err.response.status === 401) {
+    console.log(err.response);
+    if (err.response !== undefined && err.response.status === 401) {
       console.log(err.response);
       // try {
       //   console.log(errStatus);

@@ -23,6 +23,7 @@ export const CHANGE_CREDITED = 'CHANGE_CREDITED';
 export const DELETE_BILL = 'DELETE_BILL';
 export const SET_AWAIT = 'SET_AWAIT';
 export const CLEAR_ITEMS = 'CLEAR_ITEMS';
+export const FIX_WALLET = 'FIX_WALLET';
 
 // control panel
 export const GET_USERS = 'GET_USERS';

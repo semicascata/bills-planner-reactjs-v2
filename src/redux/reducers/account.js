@@ -10,6 +10,7 @@ import {
   CHANGE_CREDITED,
   LOAD_ACCOUNT,
   CLEAR_ITEMS,
+  FIX_WALLET,
 } from '../types';
 
 const initialState = {
@@ -77,6 +78,7 @@ export default (state = initialState, action) => {
         ...state,
         wait: false,
       };
+    case FIX_WALLET:
     case ADD_CREDIT:
       return {
         ...state,
